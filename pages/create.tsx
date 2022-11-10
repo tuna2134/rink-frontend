@@ -13,7 +13,7 @@ export default function accountCreate() {
       password: { value: string };
       userid: { value: string };
     }
-    const r = await axios.post(`https://tuna2134-verbose-system-xvvwrv4r9g5hprr7-8000.preview.app.github.dev/api/v1/accounts`, {
+    const r = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/accounts`, {
       data: {
         email: target.email.value,
         id: target.userid.value,
