@@ -1,16 +1,23 @@
 import axios from 'axios';
-import { API_URL } from 'lib';
+import { API_URL } from '../lib';
 import { setCookie } from 'nookies'
 import RootPage from '../components/root'
+import { FormEvent } from 'react';
 
 
 export default function accountCreate() {
-  async function handleSubmit(event) {
-    const r = await axios.post(`${API_URL}/v1/accounts`, {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const target = event.target as typeof event.target & {
+      email: { value: string };
+      password: { value: string };
+      userid: { value: string };
+    }
+    const r = await axios.post(`https://tuna2134-verbose-system-xvvwrv4r9g5hprr7-8000.preview.app.github.dev/api/v1/accounts`, {
       data: {
-        email: event.target.email.value,
-        id: event.target.id.value,
-        password: event.target.password.value,
+        email: target.email.value,
+        id: target.userid.value,
+        password: target.password.value,
       }
     });
     setCookie(null, "token", r.data);
