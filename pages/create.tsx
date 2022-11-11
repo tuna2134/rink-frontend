@@ -20,7 +20,7 @@ export default function accountCreate() {
         password: target.password.value,
       }
     });
-    setCookie(null, "token", r.data);
+    setCookie(null, "token", r.data.access_token);
   }
   return (
     <RootPage>
